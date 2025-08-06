@@ -14,9 +14,12 @@ public class EnemyScript : MonoBehaviour
 
     private void Start()
     {
+
         _agent = GetComponent<NavMeshAgent>();
 
-        _player = _target.gameObject.GetComponent<PlayerController>();
+        _player = FindAnyObjectByType<PlayerController>();
+
+        _target = _player.transform;
 
         _rbPlayer = _target.gameObject.GetComponent<Rigidbody>();
     }
@@ -33,6 +36,8 @@ public class EnemyScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            _player.CanMove = false;
+
             var rb = collision.gameObject.GetComponent<Rigidbody>();
 
             var direction = (collision.gameObject.transform.position - transform.position).normalized;
@@ -43,7 +48,7 @@ public class EnemyScript : MonoBehaviour
 
             print(direction);
 
-            //_player.Health -= _damage;
+            _player.Health -= _damage;
 
 
             //Debug.DrawRay(collision.transform.position, direction * _forceStrange, Color.red, 1f);
@@ -52,8 +57,18 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            _player.CanMove = true;
+        }
+    }
+
     public void Touch()
     {
+        _player.CanMove = false;
+
         var direction = (_target.position - transform.position).normalized;
 
         direction.y = _dirY;
@@ -68,5 +83,7 @@ public class EnemyScript : MonoBehaviour
         Debug.DrawRay(_target.position, direction * _forceStrange, Color.red, 1f);
 
         _rbPlayer.AddForce(direction * _forceStrange, ForceMode.Impulse);
+
+        _player.CanMove = true;
     }
 }

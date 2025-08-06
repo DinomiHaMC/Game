@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private bool _canMove;
+
     [SerializeField] private float _speed = 5f;
     [SerializeField] private float _gravity = 9.8f;
     [SerializeField] private float _jumpHeight = 2f;
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private JumpScript _jumpScript;
 
     public int Health { get => _health; set => _health = value; }
+    public bool CanMove { get => _canMove; set => _canMove = value; }
 
     private void Start()
     {
@@ -32,7 +35,7 @@ public class PlayerController : MonoBehaviour
         _horizontal = Input.GetAxis("Horizontal");
         _vertical = Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
@@ -40,12 +43,15 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_horizontal != 0 || _vertical != 0)
+        if (_canMove)
         {
-            Vector3 localInput = new Vector3(_horizontal, 0, _vertical);
-            Vector3 worldDir = transform.TransformDirection(localInput) * _speed;
-
-            _rb.linearVelocity = new Vector3(worldDir.x, _rb.linearVelocity.y, worldDir.z);
+            if (_horizontal != 0 || _vertical != 0)
+            {
+                Vector3 localInput = new Vector3(_horizontal, 0, _vertical);
+                Vector3 worldDir = transform.TransformDirection(localInput) * _speed;
+                
+                _rb.linearVelocity = new Vector3(worldDir.x, _rb.linearVelocity.y, worldDir.z);///
+            }
         }
     }
 

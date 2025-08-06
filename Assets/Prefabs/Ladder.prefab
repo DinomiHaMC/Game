@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5169512110030351434}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,10 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _breakTime: 3
-  _animTime: 0
-  _animName: 
-  _woodItem: {fileID: 6717951629253347875, guid: ea3794a43ef72b44c992f58c7459d98d, type: 3}
-  _itemSpawnPos: {fileID: 0}
+  _item: {fileID: 6717951629253347875, guid: ea3794a43ef72b44c992f58c7459d98d, type: 3}
+  _itemSpawnPos: {fileID: 1505874826786743553}
 --- !u!1 &3996190515283750396
 GameObject:
   m_ObjectHideFlags: 0

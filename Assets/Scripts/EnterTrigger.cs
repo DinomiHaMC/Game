@@ -6,13 +6,17 @@ using UnityEngine.Events;
 
 public class EnterTrigger : MonoBehaviour
 {
-    [SerializeField] private string _tag;
+    [SerializeField] private string[] _tag;
     [SerializeField] private UnityEvent _event;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag(_tag))
+        foreach (var tag in _tag)
         {
-            _event?.Invoke();
+            if (other.gameObject.CompareTag(tag))
+            {
+                _event?.Invoke();
+                break;
+            }
         }
     }
 }

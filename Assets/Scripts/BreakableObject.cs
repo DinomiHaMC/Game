@@ -5,7 +5,7 @@ public class BreakableObject : MonoBehaviour
     [SerializeField] private float _breakTime;
     //[SerializeField] private float _animTime;
     //[SerializeField] private string _animName;
-    [SerializeField] private GameObject _woodItem;
+    [SerializeField] private GameObject _item;
     [SerializeField] private Transform _itemSpawnPos;
 
     private Animator _a;
@@ -21,7 +21,7 @@ public class BreakableObject : MonoBehaviour
     public void OnBroken()
     {
         //_a.SetBool(_animName, true);
-        Instantiate(_woodItem, _itemSpawnPos.position, Quaternion.identity);
+        Instantiate(_item, _itemSpawnPos.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

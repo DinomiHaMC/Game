@@ -44,6 +44,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: tree
       objectReference: {fileID: 0}
+    - target: {fileID: 7851094486184029206, guid: b94e9a1614b4ff84e93de6de0e9d04f0, type: 3}
+      propertyPath: _item
+      value: 
+      objectReference: {fileID: 6717951629253347875, guid: ea3794a43ef72b44c992f58c7459d98d, type: 3}
+    - target: {fileID: 7851094486184029206, guid: b94e9a1614b4ff84e93de6de0e9d04f0, type: 3}
+      propertyPath: _itemSpawnPos
+      value: 
+      objectReference: {fileID: 3616383717360694286}
     - target: {fileID: 8089358213611639168, guid: b94e9a1614b4ff84e93de6de0e9d04f0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
