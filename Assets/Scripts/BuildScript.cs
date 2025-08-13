@@ -97,8 +97,11 @@ public class BuildScript : MonoBehaviour
 
         else
         {
-            _visualObjList[_buildObject].SetActive(false);
-            _buildObject = -1;
+            if(_visualObjList[_buildObject])
+            {
+                _visualObjList[_buildObject].SetActive(false);
+                _buildObject = -1;
+            }
         }
     }
 }

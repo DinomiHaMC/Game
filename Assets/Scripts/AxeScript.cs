@@ -7,6 +7,9 @@ public class AxeScript : MonoBehaviour
     [SerializeField] private float _gatherDistance;
     [SerializeField] private Transform _pointRayCast;
 
+    [SerializeField] private ItemData _itemData;
+    private ItemInstance _axeItem;
+
     private BreakableObject _currentTarget;
     private float _currentProgress;
     private Animator _animator;
@@ -15,6 +18,7 @@ public class AxeScript : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _slider.gameObject.SetActive(false);
+        _axeItem = new ItemInstance(_itemData);
     }
 
     private void Update()
@@ -39,15 +43,23 @@ public class AxeScript : MonoBehaviour
                         _currentProgress = 0;
                         _slider.value = 0;
                     }
-
-                    _slider.gameObject.SetActive(true);
-                    _currentProgress += Time.deltaTime;
-                    _slider.value = _currentProgress / _currentTarget.BreakTime;
+                    if (!_axeItem.IsBroken)
+                    {
+                        _slider.gameObject.SetActive(true);
+                        _currentProgress += Time.deltaTime * _axeItem.GetEffeciency();
+                        _slider.value = _currentProgress / _currentTarget.BreakTime;
+                    }
 
                     if(_currentProgress >= _currentTarget.BreakTime)
                     {
                         _currentTarget.OnBroken();
+                        _axeItem.Use(0.1f);
                         ResetBreaking();
+
+                        if (_axeItem.IsBroken)
+                        {
+                            print("Топор сломан!");
+                        }
                     }
                 }
                 else

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName ="New Item", menuName = "Inventory/Item")]
+[CreateAssetMenu(fileName ="New Item", menuName = "Items/Item")]
 public class ItemScript : ScriptableObject
 {
     [SerializeField] private string _name;
