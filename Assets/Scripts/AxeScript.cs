@@ -28,7 +28,7 @@ public class AxeScript : MonoBehaviour
         var MouseLeft = Input.GetMouseButton(0);
         _animator.SetBool("AxeUse", MouseLeft);
 
-        _durability.value = _axeItem.currentDurability;
+        _durability.value = _axeItem.currentDurability / _axeItem.GetDurability();
 
         _slider.gameObject.SetActive(MouseLeft);
         if (MouseLeft)
