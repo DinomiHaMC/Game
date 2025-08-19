@@ -4,6 +4,8 @@ using UnityEngine.UI;
 public class AxeScript : MonoBehaviour
 {
     [SerializeField] private Slider _slider;
+    [SerializeField] private Slider _durability;
+
     [SerializeField] private float _gatherDistance;
     [SerializeField] private Transform _pointRayCast;
 
@@ -25,6 +27,8 @@ public class AxeScript : MonoBehaviour
     {
         var MouseLeft = Input.GetMouseButton(0);
         _animator.SetBool("AxeUse", MouseLeft);
+
+        _durability.value = _axeItem.currentDurability;
 
         _slider.gameObject.SetActive(MouseLeft);
         if (MouseLeft)

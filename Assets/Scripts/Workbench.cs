@@ -3,10 +3,14 @@ using UnityEngine;
 public class Workbench : MonoBehaviour
 {
     private UpgradeUIController _upgradeUI;
+    private CameraComponent _camera;
+    private UITag _ui;
 
     private void Start()
     {
-        _upgradeUI = FindAnyObjectByType<UpgradeUIController>();
+        _upgradeUI = FindObjectOfType<UpgradeUIController>(true);
+        _camera = FindAnyObjectByType<CameraComponent>();
+        _ui = FindAnyObjectByType<UITag>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -14,7 +18,8 @@ public class Workbench : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             _upgradeUI.gameObject.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
+            _camera.CameraLocker = true;
+            _ui.gameObject.SetActive(false);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -22,7 +27,8 @@ public class Workbench : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _upgradeUI.gameObject.SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
+            _camera.CameraLocker = false;
+            _ui.gameObject.SetActive(true);
         }
     }
 }

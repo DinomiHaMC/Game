@@ -957,7 +957,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 150
   _player: {fileID: 1608783547}
-  _cur: 1
+  _cursor: 1
+  _cameraLocker: 0
 --- !u!1 &331261212
 GameObject:
   m_ObjectHideFlags: 0
@@ -3655,7 +3656,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1318476608
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4394,6 +4395,7 @@ MonoBehaviour:
   _buildObject: 0
   _scrollSpeed: 10
   _buildMode: 0
+  _flag: 0
 --- !u!114 &1608783557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4876,6 +4878,7 @@ MonoBehaviour:
   _slider: {fileID: 475787064}
   _gatherDistance: 5
   _pointRayCast: {fileID: 330585546}
+  _itemData: {fileID: 11400000, guid: 070a94c9a4cbc314e8f214219198b251, type: 2}
 --- !u!95 &1873326278
 Animator:
   serializedVersion: 7

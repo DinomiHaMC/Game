@@ -16,6 +16,8 @@ public class BuildScript : MonoBehaviour
     [SerializeField] private float _scrollSpeed;
     [SerializeField] private bool _buildMode;
 
+    [SerializeField] private bool _flag;
+
     public int BuildObject { get => _buildObject; set => _buildObject = value; }
     public bool BuildMode { get => _buildMode; set => _buildMode = value; }
 
@@ -93,14 +95,17 @@ public class BuildScript : MonoBehaviour
                 _inv.RemoveItem(_wood, 2);
                 _inv.RemoveItem(_thread, 2);
             }
+            if (_flag)
+                _flag = false;
         }
 
         else
         {
-            if(_visualObjList[_buildObject])
+            if(!_flag)
             {
                 _visualObjList[_buildObject].SetActive(false);
                 _buildObject = -1;
+                _flag = true;
             }
         }
     }
