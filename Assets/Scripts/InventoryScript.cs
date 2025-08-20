@@ -10,12 +10,12 @@ public class InventoryScript : MonoBehaviour
     [SerializeField] private List<ItemScript> _threadList = new List<ItemScript>();
     [SerializeField] private Transform _panel;
     [SerializeField] private GameObject _prefabSlot;
-    [SerializeField] private byte _woodCount;
-    [SerializeField] private byte _threadCount;
+    [SerializeField] private int _woodCount;
+    [SerializeField] private int _threadCount;
     [SerializeField] private int _itemCount;
 
-    public byte WoodCount { get => _woodCount; set => _woodCount = value; }
-    public byte ThreadCount { get => _threadCount; set => _threadCount = value; }
+    public int WoodCount { get => _woodCount; set => _woodCount = value; }
+    public int ThreadCount { get => _threadCount; set => _threadCount = value; }
     public int ItemCount { get => _itemCount; set => _itemCount = value; }
 
     private void Update()
@@ -78,6 +78,19 @@ public class InventoryScript : MonoBehaviour
             UpdateUI();
         }
 
+    }
+
+    public bool CheckItem(ItemScript item, int count)
+    {
+        if(item.Name == "Wood" && _woodCount >= count)
+        {
+            return true;
+        }
+        else if(item.Name == "Thread" && _threadCount >= count)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void ClearInventory()

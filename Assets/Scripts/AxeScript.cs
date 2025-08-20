@@ -89,4 +89,9 @@ public class AxeScript : MonoBehaviour
         _slider.value = 0;
         _slider.gameObject.SetActive(false);
     }
+
+    public ItemInstance GetItem()
+    {
+        return _axeItem;
+    }
 }

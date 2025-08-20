@@ -14,6 +14,10 @@ public class UpgradeUIController : MonoBehaviour
 
     private ItemInstance _currentItem;
 
+    [SerializeField] private InventoryScript _inventory;
+    [SerializeField] private ItemScript _thread;
+    [SerializeField] private ItemScript _wood;
+
     public void SetItem(ItemInstance item)
     {
         _currentItem = item;
@@ -22,14 +26,21 @@ public class UpgradeUIController : MonoBehaviour
 
     public void Repair()
     {
+        if(_currentItem == null || !_inventory.CheckItem(_thread, 1)) return;
         _currentItem.Repair();
+        _inventory.RemoveItem(_thread, 1);
         UpdateUI();
     }
 
     public void Updrade()
     {
-        if (_currentItem.Upgrade())
+        if (_currentItem == null) return;
+        if (_currentItem.Upgrade() && _inventory.CheckItem(_wood, 2) && _inventory.CheckItem(_thread, 1))
+        {
+            _inventory.RemoveItem(_wood, 2);
+            _inventory.RemoveItem(_thread, 1);
             UpdateUI();
+        }
     }
 
     private void UpdateUI()

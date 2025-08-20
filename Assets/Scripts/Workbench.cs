@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Workbench : MonoBehaviour
 {
+    private AxeScript _axe;
     private UpgradeUIController _upgradeUI;
     private CameraComponent _camera;
     private UITag _ui;
@@ -11,6 +12,7 @@ public class Workbench : MonoBehaviour
         _upgradeUI = FindObjectOfType<UpgradeUIController>(true);
         _camera = FindAnyObjectByType<CameraComponent>();
         _ui = FindAnyObjectByType<UITag>();
+        _axe = FindAnyObjectByType<AxeScript>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,8 +20,10 @@ public class Workbench : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             _upgradeUI.gameObject.SetActive(true);
+            _upgradeUI.SetItem(_axe.GetItem());
             _camera.CameraLocker = true;
             _ui.gameObject.SetActive(false);
+            
         }
     }
     private void OnTriggerExit(Collider other)
