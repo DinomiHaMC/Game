@@ -29,8 +29,15 @@ public class ItemInstance
 
     public bool Upgrade()
     {
-        if (currentLevel >= data.maxLevel && !_inventory.CheckItem(_wood, 2) && !_inventory.CheckItem(_thread, 1))
+        if (currentLevel >= data.maxLevel)
+        {
             return false;
+        }
+        else if (!_inventory.CheckItem(_wood, 2) && !_inventory.CheckItem(_thread, 1))
+        {
+            return false;
+        }
+
         currentLevel++;
 
         Repair();
