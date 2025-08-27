@@ -6,6 +6,10 @@ public class ItemInstance
     public ItemData data;
     public int currentLevel = 1;
     public float currentDurability;
+    public InventoryScript _inventory;
+
+    public ItemScript _wood;
+    public ItemScript _thread;
 
     public ItemInstance(ItemData data)
     {
@@ -25,7 +29,7 @@ public class ItemInstance
 
     public bool Upgrade()
     {
-        if (currentLevel >= data.maxLevel)
+        if (currentLevel >= data.maxLevel && !_inventory.CheckItem(_wood, 2) && !_inventory.CheckItem(_thread, 1))
             return false;
         currentLevel++;
 

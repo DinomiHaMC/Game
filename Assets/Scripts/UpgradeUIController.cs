@@ -35,11 +35,17 @@ public class UpgradeUIController : MonoBehaviour
     public void Updrade()
     {
         if (_currentItem == null) return;
-        if (_currentItem.Upgrade() && _inventory.CheckItem(_wood, 2) && _inventory.CheckItem(_thread, 1))
+        if (_currentItem.Upgrade())
         {
+            print(_currentItem.Upgrade());
             _inventory.RemoveItem(_wood, 2);
             _inventory.RemoveItem(_thread, 1);
             UpdateUI();
+            return;
+        }
+        else
+        {
+            return;
         }
     }
 
