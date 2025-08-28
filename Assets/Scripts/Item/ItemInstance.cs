@@ -11,9 +11,11 @@ public class ItemInstance
     public ItemScript _wood;
     public ItemScript _thread;
 
-    public ItemInstance(ItemData data)
+    public ItemInstance(AxeScript axe, ItemData data, InventoryScript inventory)
     {
         this.data = data;
+        _axe = axe;
+        _inventory = inventory;
         currentLevel = 1;
         currentDurability = data.durabilityPerLevel[0];
     }
@@ -31,9 +33,10 @@ public class ItemInstance
     {
         if (currentLevel >= data.maxLevel)
         {
+            
             return false;
         }
-        else if (!_inventory.CheckItem(_wood, 2) && !_inventory.CheckItem(_thread, 1))
+        else if (!_inventory.CheckItem(_wood, 2) || !_inventory.CheckItem(_thread, 1))
         {
             return false;
         }

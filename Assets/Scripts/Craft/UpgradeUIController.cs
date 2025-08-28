@@ -21,6 +21,7 @@ public class UpgradeUIController : MonoBehaviour
     public void SetItem(ItemInstance item)
     {
         _currentItem = item;
+        _currentItem._inventory = _inventory;
         UpdateUI();
     }
 
@@ -34,7 +35,7 @@ public class UpgradeUIController : MonoBehaviour
 
     public void Updrade()
     {
-        if (_currentItem == null) return;
+        if (_currentItem == null) { print("No item"); return; }
         if (_currentItem.Upgrade())
         {
             print(_currentItem.Upgrade());
